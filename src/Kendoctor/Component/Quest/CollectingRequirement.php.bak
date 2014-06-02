@@ -1,0 +1,59 @@
+<?php
+
+namespace Kendoctor\Component\Quest;
+
+use PhpSpec\Exception\Exception;
+
+class CollectingRequirement extends Requirement
+{
+
+    private $item;
+    private $quantity;
+
+    public function __construct($item, $quantity = 1)
+    {
+        $this->setQuantity($quantity);
+        $this->item = $item;
+
+        if(null === $this->item)
+        {
+            throw new \Exception('No item specified');
+        }
+    }
+
+    public function setItem($item)
+    {
+        $this->item = $item;
+    }
+
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    public function setQuantity($quantity)
+    {
+       if($quantity < 1)
+       {
+           throw new Exception('Quantity should not be less than 1');
+       }
+
+       $this->quantity = $quantity;
+       return $this;
+    }
+
+    public function getQuantity()
+    {
+       return $this->quantity;
+    }
+
+    public function doMatch(CollectorInterface $collector)
+    {
+
+        //todo this should be getUniqueToken
+        if($collector->hasEnoughQuantity($this->getItem()))
+            return true;
+
+        return false;
+    }
+}

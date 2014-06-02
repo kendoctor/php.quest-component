@@ -1,0 +1,21 @@
+{
+    "name": "kendoctor/quest-component",
+    "type": "library",
+    "description": "Its a 2d dimension binder to bind array elements in table cells",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kendoctor",
+            "email": "kendoctor@163.com"
+        }
+    ],
+    "require-dev": {
+        "phpsepc/phpspec" : "*"
+    },
+    "autoload":{
+        "psr-0" : {
+            "Kendoctor\\Component\\Quest" : "src/"
+        }
+    }
+}

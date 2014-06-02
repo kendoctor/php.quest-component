@@ -1,0 +1,60 @@
+<?php
+
+namespace spec\Kendoctor\Component\Quest;
+
+use Kendoctor\Component\Quest\CollectorInterface;
+use Kendoctor\Component\Quest\RoleInterface;
+use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+
+class CollectingRequirementSpec extends ObjectBehavior
+{
+    function let($item)
+    {
+        $this->beConstructedWith($item);
+    }
+
+    function it_is_initializable()
+    {
+        $this->shouldHaveType('Kendoctor\Component\Quest\CollectingRequirement');
+        $this->shouldBeAnInstanceOf('Kendoctor\Component\Quest\Requirement');
+    }
+
+    function its_collecting_item_is_mutable($item)
+    {
+        $this->setItem($item);
+        $this->getItem()->shouldBe($item);
+    }
+
+    function its_collecting_item_quantity_is_1_by_default()
+    {
+        $this->getQuantity()->shouldBe(1);
+    }
+
+    function its_collecting_item_quantity_is_mutable()
+    {
+        $this->setQuantity(5)->shouldReturn($this);
+        $this->getQuantity()->shouldBe(5);
+    }
+
+    function its_collecting_item_quantity_should_not_be_less_than_1()
+    {
+        $this->shouldThrow()->duringSetQuantity(0);
+        $this->shouldThrow()->duringSetQuantity(-1);
+    }
+
+    function its_doMatch_return_true_when_its_required_quantity_matched(CollectorInterface $collector)
+    {
+        $this->setQuantity(4);
+
+        $collector->hasEnoughQuantity($this->getItem())->shouldBeCalled()->willReturn(5);
+        $this->doMatch($collector)->shouldBe(true);
+    }
+
+    /*function its_doMatch_return_false_when_less_than_required_quantity(RoleInterface $role)
+    {
+        $this->setQuantity(5);
+        $role->getQuantityOfItemType($this->getItem())->shouldBeCalled()->willReturn(3);
+        $this->doMatch($role)->shouldReturn(false);
+    }*/
+}
