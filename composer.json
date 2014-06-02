@@ -12,11 +12,6 @@
     "require-dev": {
         "phpsepc/phpspec" : "*"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0"
-        }
-    },
     "autoload":{
         "psr-0" : {
             "Kendoctor\\Component\\Quest" : "src/"
