@@ -1,7 +1,7 @@
 {
     "name": "kendoctor/quest-component",
     "type": "library",
-    "description": "Its a 2d dimension binder to bind array elements in table cells",
+    "description": "It's quest component for tasks",
     "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
@@ -12,6 +12,11 @@
     ],
     "require-dev": {
         "phpsepc/phpspec" : "*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "master"
+        }
     },
     "autoload":{
         "psr-0" : {
