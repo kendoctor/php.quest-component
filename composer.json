@@ -2,7 +2,6 @@
     "name": "kendoctor/quest-component",
     "type": "library",
     "description": "It's quest component for tasks",
-    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
